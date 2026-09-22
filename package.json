@@ -1,0 +1,29 @@
+{
+  "name": "taskmanager-api",
+  "version": "1.0.0",
+  "description": "A small Task Manager REST API used as the project for the SIT223/SIT753 HD DevOps pipeline task.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "build": "node -e \"console.log('Build check: package.json valid, entry point present')\" && node -c src/app.js",
+    "test": "jest --coverage --coverageReporters=lcov --coverageReporters=text",
+    "test:integration": "jest test/api.test.js --runInBand"
+  },
+  "keywords": [],
+  "author": "Praneeth",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "prom-client": "^15.1.3"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
+  }
+}

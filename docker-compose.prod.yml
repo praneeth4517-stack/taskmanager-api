@@ -1,0 +1,16 @@
+# Production environment config used by the Release stage.
+# Same image, different port/environment configuration (environment-specific
+# config, as distinct from staging) - this is what "promotion to production"
+# means for this project: the already-tested image is retagged :production
+# and brought up under the production compose file.
+services:
+  taskmanager-api-production:
+    image: taskmanager-api:production
+    container_name: taskmanager-api-production
+    ports:
+      - "3002:3000"
+    environment:
+      - PORT=3000
+      - API_KEY=production-api-key
+      - NODE_ENV=production
+    restart: unless-stopped

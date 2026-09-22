@@ -1,0 +1,13 @@
+# Staging environment config used by the Deploy stage.
+# Infra-as-code: this file IS the deployment definition, checked into git.
+services:
+  taskmanager-api-staging:
+    image: taskmanager-api:${IMAGE_TAG:-latest}
+    container_name: taskmanager-api-staging
+    ports:
+      - "3001:3000"
+    environment:
+      - PORT=3000
+      - API_KEY=staging-api-key
+      - NODE_ENV=staging
+    restart: unless-stopped
