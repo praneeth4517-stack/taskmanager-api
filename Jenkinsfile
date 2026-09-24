@@ -60,6 +60,8 @@ pipeline {
                 bat "docker tag %IMAGE_NAME%:%IMAGE_TAG% %IMAGE_NAME%:production"
                 bat 'docker compose -f docker-compose.prod.yml down || exit /b 0'
                 bat 'docker compose -f docker-compose.prod.yml up -d'
+                bat 'git config --global user.email "praneeth4517@gmail.com"'
+                bat 'git config --global user.name "Praneeth"'
                 bat "git tag -a v1.0.%IMAGE_TAG% -m \"Automated release from Jenkins build %IMAGE_TAG%\""
                 withCredentials([usernamePassword(credentialsId: 'GITHUB_PAT', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_TOKEN')]) {
                     bat "git push https://%GIT_USER%:%GIT_TOKEN%@github.com/praneeth4517-stack/taskmanager-api.git v1.0.%IMAGE_TAG%"
